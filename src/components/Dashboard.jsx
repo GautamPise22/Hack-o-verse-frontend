@@ -20,7 +20,6 @@ const Dashboard = ({ shopData, onLogout }) => {
             const invRes = await axios.get(`${API_URL}/api/inventory/view/${shopData.shop_id}`);
             // const statsRes = await axios.get(`http://localhost:5000/api/inventory/stats/${shopData.shop_id}`);
             setStats(statsRes.data);
-            console.log(shopData.shop_id);
 
             // 2. Get Inventory
             // const invRes = await axios.get(`http://localhost:5000/api/inventory/view/${shopData.shop_id}`);
