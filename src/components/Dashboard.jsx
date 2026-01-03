@@ -47,12 +47,14 @@ const Dashboard = ({ shopData, onLogout }) => {
                 customer_name: customerName,
                 subCode: subCode // Will be null if selling whole unit
             };
-
+            const API_URL = import.meta.env.VITE_API_URL;
             // const res = await axios.post("http://localhost:5000/api/inventory/sell", payload);
             const res = await axios.post(`${API_URL}/api/inventory/sell`, payload);
             toast.success(res.data.message);
             fetchData(); // Refresh data
+            // console.log(res.data.message);
         } catch (err) {
+            // console.log(err);
             toast.error(err.response?.data?.message || "Sale failed");
         }
     };
