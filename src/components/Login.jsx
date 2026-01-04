@@ -73,12 +73,12 @@ const Login = ({ onLogin, onSwitchToRegister }) => {
                     </button>
                 </form>
 
-                <p className="text-center text-slate-400 mt-6 text-sm">
+                {/* <p className="text-center text-slate-400 mt-6 text-sm">
                     Don't have a shop ID?{" "}
                     <button onClick={onSwitchToRegister} className="text-cyan-400 hover:underline">
                         Register here
                     </button>
-                </p>
+                </p> */}
             </motion.div>
         </div>
     );

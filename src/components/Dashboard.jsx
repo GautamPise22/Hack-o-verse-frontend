@@ -5,7 +5,7 @@ import { Package, Pill, TrendingUp, LogOut, Search } from "lucide-react";
 import toast from "react-hot-toast";
 
 // Import the new component
-// Make sure the path matches where you saved the file in Step 2
+// Make sure the path matches where you saved the file
 import AnalyticsDashboard from "../components/AnalyticsDashboard"; 
 
 const Dashboard = ({ shopData, onLogout }) => {
@@ -50,12 +50,21 @@ const Dashboard = ({ shopData, onLogout }) => {
 
     return (
         <div className="min-h-screen bg-deepBlue p-6">
-            {/* Header */}
+            {/* Header - UPDATED WITH LOGO */}
             <div className="flex justify-between items-center mb-8 max-w-7xl mx-auto">
-                <div>
-                    <h1 className="text-3xl font-bold text-white tracking-tight">Stock & Analytics</h1>
-                    <p className="text-cyan-400">Welcome, {shopData.shop_name}</p>
+                <div className="flex items-center gap-4">
+                    {/* Logo Image */}
+                    <img 
+                        src="/logo.jpeg" 
+                        alt="MedTech Logo" 
+                        className="w-12 h-12 rounded-full border-2 border-cyan-500/50 shadow-lg shadow-cyan-500/20 object-cover" 
+                    />
+                    <div>
+                        <h1 className="text-3xl font-bold text-white tracking-tight">Stock & Analytics</h1>
+                        <p className="text-cyan-400">Welcome, {shopData.shop_name}</p>
+                    </div>
                 </div>
+
                 <button onClick={onLogout} className="flex items-center gap-2 px-4 py-2 bg-slate-800 hover:bg-red-900/30 text-red-400 rounded-lg transition border border-slate-700">
                     <LogOut size={18} /> Logout
                 </button>
