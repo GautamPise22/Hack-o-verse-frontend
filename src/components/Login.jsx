@@ -1,20 +1,21 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { motion } from "framer-motion";
-import { Lock, Store, User } from "lucide-react";
+import { Lock, Store, Mail } from "lucide-react"; // Changed User to Mail
 import toast from "react-hot-toast";
 
 const Login = ({ onLogin, onSwitchToRegister }) => {
-    const [formData, setFormData] = useState({ username: "", password: "" });
+    // ✅ Updated state to use 'email' instead of 'username'
+    const [formData, setFormData] = useState({ email: "", password: "" });
     const [loading, setLoading] = useState(false);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
         try {
-            //   const res = await axios.post("http://localhost:5000/api/auth/login", formData);
             const API_URL = import.meta.env.VITE_API_URL;
             const res = await axios.post(`${API_URL}/api/auth/login`, formData);
+            
             if (res.data.success) {
                 toast.success("Login Successful!");
                 onLogin(res.data);
@@ -47,12 +48,15 @@ const Login = ({ onLogin, onSwitchToRegister }) => {
 
                 <form onSubmit={handleSubmit} className="space-y-6">
                     <div className="relative">
-                        <User className="absolute left-3 top-3 text-slate-400 w-5 h-5" />
+                        {/* ✅ Changed Icon to Mail */}
+                        <Mail className="absolute left-3 top-3 text-slate-400 w-5 h-5" />
                         <input
-                            type="text"
-                            placeholder="Username"
+                            type="email" // ✅ Changed type to email
+                            placeholder="Email Address" // ✅ Updated Placeholder
                             className="w-full bg-slate-800 text-white pl-10 pr-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500 transition border border-slate-700"
-                            onChange={(e) => setFormData({ ...formData, username: e.target.value })}
+                            // ✅ Updated state handler
+                            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                            required
                         />
                     </div>
                     <div className="relative">
@@ -62,6 +66,7 @@ const Login = ({ onLogin, onSwitchToRegister }) => {
                             placeholder="Password"
                             className="w-full bg-slate-800 text-white pl-10 pr-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500 transition border border-slate-700"
                             onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+                            required
                         />
                     </div>
 
